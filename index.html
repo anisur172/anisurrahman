@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Anisur Rahman - Data Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* --- Background Pattern --- */
+        body {
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* --- Animation & Reveal on Scroll --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Timeline Styling --- */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px; /* Adjusted for centering */
+            top: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #0e172a; /* slate-900 */
+            border: 4px solid #06b6d4; /* cyan-500 */
+            z-index: 1;
+        }
+
+        /* --- Project Modal Styling --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: #1e293b; /* slate-800 */
+            border-radius: 0.5rem; padding: 2rem; width: 100%;
+            max-width: 600px; max-height: 90vh; overflow-y: auto;
+            position: relative;
+            transform: scale(0.95); opacity: 0;
+            animation: modal-swoop 0.3s ease-out forwards;
+        }
+        @keyframes modal-swoop {
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* --- Scrollbar styling for modal --- */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: #334155; }
+        .modal-content::-webkit-scrollbar-thumb { background-color: #06b6d4; border-radius: 20px; }
+
+        /* --- Typing Effect --- */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 2.5rem; /* Match text size */
+            background-color: #06b6d4; /* cyan-500 */
+            animation: blink 0.7s infinite;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300 font-sans leading-relaxed">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-slate-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-shadow duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white hover:text-cyan-400 transition-colors">AR.</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none"><i data-feather="menu"></i></button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="#experience" class="block py-2 hover:text-cyan-400 transition-colors">Experience</a>
+            <a href="#projects" class="block py-2 hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#contact" class="block py-2 hover:text-cyan-400 transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 md:pt-32">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-[85vh] flex items-center">
+            <div class="w-full flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Text Content -->
+                <div class="md:w-3/5 text-center md:text-left reveal active">
+                    <p class="text-cyan-400 font-medium text-lg">Hello, I'm MD Anisur Rahman.</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white my-3 leading-tight">I Turn Data Into <br>Actionable Insights.</h1>
+                    <h2 class="text-2xl md:text-3xl font-medium text-slate-400 mb-6 h-10">
+                        <span id="typing-effect"></span><span class="typing-cursor"></span>
+                    </h2>
+                    <p class="max-w-xl mx-auto md:mx-0 mb-8 text-slate-400">
+                        A result-driven Data Analyst & Electronics Manufacturing Specialist with 6.4+ years of experience in translating complex data into business solutions using SQL, Python, ETL, and Power BI.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                         <a href="https://linkedin.com/in/anisur172" target="_blank" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg shadow-cyan-500/20">Get In Touch</a>
+                         <a href="/Md Anisur Rahman-DA02.pdf" download="MD_Anisur_Rahman_Resume.pdf" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105">Download Resume</a>
+                    </div>
+                </div>
+                <!-- Image Content -->
+                <div class="md:w-2/5 flex justify-center reveal active" style="transition-delay: 200ms;">
+                    <div class="relative w-72 h-72 lg:w-80 lg:h-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full blur-xl animate-pulse"></div>
+                        <img src="/picture.jpg" alt="MD Anisur Rahman" class="relative w-full h-full object-cover rounded-full border-4 border-slate-700 shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white"><span class="text-cyan-400">01.</span> Core Competencies & Skills</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal"><h3 class="text-xl font-bold text-white mb-3">Data Analysis & BI</h3><p class="text-slate-400">Power BI, DAX, Power Query, MS Excel, Google Sheets, Metabase, Data Cleaning, Modeling & Visualization</p></div>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal" style="transition-delay: 100ms;"><h3 class="text-xl font-bold text-white mb-3">Databases & SQL</h3><p class="text-slate-400">MySQL, PostgreSQL, Advanced SQL, MySQL Triggers, Database Management</p></div>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal" style="transition-delay: 200ms;"><h3 class="text-xl font-bold text-white mb-3">Data Engineering & Cloud</h3><p class="text-slate-400">ETL Pipelines, Data Warehousing, Google BigQuery, DBeaver</p></div>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal" style="transition-delay: 300ms;"><h3 class="text-xl font-bold text-white mb-3">Low-Code Platforms</h3><p class="text-slate-400">AppSheet, Retool for data collection</p></div>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal" style="transition-delay: 400ms;"><h3 class="text-xl font-bold text-white mb-3">Programming</h3><p class="text-slate-400">Python for ETL & Data Cleaning</p></div>
+                <div class="bg-slate-800 p-6 rounded-lg shadow-lg reveal" style="transition-delay: 500ms;"><h3 class="text-xl font-bold text-white mb-3">Quality & Process Management</h3><p class="text-slate-400">Six Sigma, 7QC tools, Lean Manufacturing, KAIZEN, CAPA,Failure Mode and Effects Analysis (FMEA),8D Analysis, Root Cause Analysis, ISO 9001</p></div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white"><span class="text-cyan-400">02.</span> Professional Experience</h2>
+            </div>
+            <div class="relative max-w-2xl mx-auto pl-10 border-l-2 border-slate-700">
+                <div class="mb-12 relative timeline-item reveal"><h3 class="text-xl font-bold text-white">Assistant Manager & Data Analyst</h3><p class="text-cyan-400 font-medium mb-1">Alamin & Brothers Ltd</p><p class="text-sm text-slate-500 mb-4">Oct 2024 – Present</p><ul class="list-disc list-inside text-slate-400 space-y-2"><li>Analyzed data from manufacturing to identify KPIs and improve efficiency.</li><li>Developed interactive Power BI dashboards to support data-driven decision-making.</li><li>Designed SQL-based data warehouse solutions using MySQL and DBeaver.</li><li>Built automated ETL pipelines using Python to extract, clean, and load data.</li><li class="font-bold text-slate-300">Key Achievement: Decreased defect ratio by 18% and increased production efficiency by 25%.</li></ul></div>
+                <div class="mb-12 relative timeline-item reveal"><h3 class="text-xl font-bold text-white">Senior Executive, Quality</h3><p class="text-cyan-400 font-medium mb-1">Salextra Limited (Nokia)</p><p class="text-sm text-slate-500 mb-4">Oct 2022 – Oct 2024</p><ul class="list-disc list-inside text-slate-400 space-y-2"><li>Analyzed manufacturing data, leading to a 5% increase in OEE.</li><li>Managed quality team to ensure products met brand expectations for Nokia, Xtra, and Dizo.</li></ul></div>
+                <div class="mb-12 relative timeline-item reveal"><h3 class="text-xl font-bold text-white">OBA Engineer</h3><p class="text-cyan-400 font-medium mb-1">Xiaomi Factory</p><p class="text-sm text-slate-500 mb-4">Mar 2021 – Oct 2022</p><ul class="list-disc list-inside text-slate-400 space-y-2"><li>Drove solutions for inspection and audit issues by performing data analysis.</li><li>Monitored product yield rates and managed process abnormalities.</li></ul></div>
+                <div class="relative timeline-item reveal"><h3 class="text-xl font-bold text-white">Process Quality Controller</h3><p class="text-cyan-400 font-medium mb-1">Best Tycoon Enterprise (Vivo)</p><p class="text-sm text-slate-500 mb-4">Mar 2019 – Mar 2021</p><ul class="list-disc list-inside text-slate-400 space-y-2"><li>Collected and analyzed NG data to create reports identifying root causes of errors.</li><li>Assisted in managing the quality team and led continuous improvement (CI) 6S audits.</li></ul></div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white"><span class="text-cyan-400">03.</span> Analytics & Engineering Projects</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="project-card bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col cursor-pointer reveal">
+                    <div class="p-6 flex-grow"><h3 class="text-xl font-bold text-white mb-2">QAD Dashboard</h3><p class="text-slate-400">Factory quality analytics dashboard with a custom ETL pipeline and Power BI visuals.</p></div>
+                    <div class="p-6 pt-0"><div class="flex flex-wrap gap-2 mb-4"><span class="tech-tag">AppSheet</span><span class="tech-tag">Python</span><span class="tech-tag">ETL</span><span class="tech-tag">SQL</span><span class="tech-tag">Power BI</span></div></div>
+                    <div class="hidden project-details">Designed and implemented an ETL pipeline from Google Sheets to a MySQL-based data warehouse, integrating production and inspection data with incremental loads. Developed complex SQL queries using window functions and CTEs to generate key performance indicators. Imported and modeled data in Power BI, using DAX measures to build an interactive dashboard for management.</div>
+                    <div class="hidden project-links" data-github="#" data-live="https://www.linkedin.com/feed/update/urn:li:activity:7367947977769877504/"></div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="project-card bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="p-6 flex-grow"><h3 class="text-xl font-bold text-white mb-2">CRM Dashboard</h3><p class="text-slate-400">E-commerce analytics dashboard to visualize customer trends and improve retention.</p></div>
+                    <div class="p-6 pt-0"><div class="flex flex-wrap gap-2 mb-4"><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span><span class="tech-tag">Data Modeling</span></div></div>
+                    <div class="hidden project-details">Visualized customer acquisition and feedback trends to support lead prioritization and improve customer retention strategies. The dashboard integrated multiple data sources to provide a holistic view of the customer journey, from initial contact to post-purchase feedback.</div>
+                    <div class="hidden project-links" data-github="#" data-live="https://www.linkedin.com/feed/update/urn:li:activity:7319925057475002368/"></div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="project-card bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="p-6 flex-grow"><h3 class="text-xl font-bold text-white mb-2">Ride-Sharing Analytics</h3><p class="text-slate-400">Analyzed ride and route data to identify high-demand areas and optimize driver performance.</p></div>
+                    <div class="p-6 pt-0"><div class="flex flex-wrap gap-2 mb-4"><span class="tech-tag">MySQL</span><span class="tech-tag">ETL</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Power BI</span></div></div>
+                    <div class="hidden project-details">Created a full data pipeline to analyze ride and route data from a ride-sharing service. The project aimed to identify high-demand areas, peak hours, and popular routes to optimize driver allocation and pricing strategies. The final output was a visual report in Power BI.</div>
+                    <div class="hidden project-links" data-github="#" data-live="#"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education & Certs Section -->
+        <section id="education" class="py-20 md:py-32">
+            <div class="text-center mb-12 reveal"><h2 class="text-3xl md:text-4xl font-bold text-white"><span class="text-cyan-400">04.</span> Education & Certifications</h2></div>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="reveal">
+                    <h3 class="text-2xl font-bold text-white mb-4">Education</h3>
+                    <div class="bg-slate-800 p-6 rounded-lg mb-4"><h4 class="font-bold text-white">B.Sc in Electrical & Electronics Engineering</h4><p class="text-cyan-400">Southeast University, Dhaka</p><p class="text-slate-500">CGPA: 3.66 / 4.00 (2024)</p></div>
+                    <div class="bg-slate-800 p-6 rounded-lg"><h4 class="font-bold text-white">Diploma in Electrical Engineering</h4><p class="text-cyan-400">Munshiganj Polytechnic Institute</p><p class="text-slate-500">CGPA: 3.64 / 4.00 (2019)</p></div>
+                </div>
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <h3 class="text-2xl font-bold text-white mb-4">Certifications</h3>
+                    <div class="bg-slate-800 p-6 rounded-lg"><ul class="space-y-3 text-slate-400"><li class="flex items-center gap-3"><i data-feather="award" class="w-5 h-5 text-cyan-400"></i>Data Analytics & Engineering Bootcamp</li><li class="flex items-center gap-3"><i data-feather="award" class="w-5 h-5 text-cyan-400"></i>Six Sigma Yellow Belt</li><li class="flex items-center gap-3"><i data-feather="award" class="w-5 h-5 text-cyan-400"></i>Lean Six Sigma White Belt</li><li class="flex items-center gap-3"><i data-feather="award" class="w-5 h-5 text-cyan-400"></i>Lean Management</li><li class="flex items-center gap-3"><i data-feather="award" class="w-5 h-5 text-cyan-400"></i>Full Stack Web Development</li></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 text-center reveal">
+            <h2 class="text-2xl md:text-3xl font-bold text-white"><span class="text-cyan-400">05.</span> What's Next?</h2>
+            <h3 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Get In Touch</h3>
+            <p class="max-w-xl mx-auto text-slate-400 mb-10">I'm currently seeking new opportunities and my inbox is always open. Whether you have a question or a project proposal, I'd love to hear from you.</p>
+            <a href="https://linkedin.com/in/anisur172" target="_blank" class="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-8 rounded-lg transition-transform hover:scale-105 shadow-lg shadow-cyan-500/20">Say Hello</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center reveal">
+        <div class="flex justify-center gap-6 mb-4">
+            <a href="https://github.com/anisur172" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="GitHub"><i data-feather="github" class="w-6 h-6"></i></a>
+            <a href="https://linkedin.com/in/anisur172" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn"><i data-feather="linkedin" class="w-6 h-6"></i></a>
+            <a href="mailto:mdanisurrahman172@gmail.com" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Email"><i data-feather="mail" class="w-6 h-6"></i></a>
+            <a href="tel:+8801873318216" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Phone"><i data-feather="phone" class="w-6 h-6"></i></a>
+        </div>
+        <p class="text-slate-500">Designed & Built by MD Anisur Rahman</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a id="back-to-top" href="#" class="hidden fixed bottom-5 right-5 bg-cyan-500/80 hover:bg-cyan-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"><i data-feather="arrow-up"></i></a>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="absolute top-4 right-5 text-slate-400 hover:text-white"><i data-feather="x" class="w-8 h-8"></i></button>
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-4"></h2>
+            <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
+            <p id="modal-description" class="text-slate-400 mb-6"></p>
+            <div id="modal-links" class="flex gap-4"></div>
+        </div>
+    </div>
+    
+    <script>
+        // --- Feather Icons Initialization ---
+        feather.replace();
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // --- Header Shadow on Scroll ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('shadow-lg', window.scrollY > 10);
+            header.classList.toggle('shadow-slate-800/10', window.scrollY > 10);
+        });
+
+        // --- Reveal on Scroll Animation ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Back to Top Button ---
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
+
+        // --- Typing Effect Logic ---
+        const typingElement = document.getElementById('typing-effect');
+        const roles = ["Data Analyst", "Business Analyst", "Manufacturing Specialist", "BI Specialist", "Process Optimizer","Data Collection"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                }
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000); // Pause at end of word
+                    return;
+                }
+            }
+            setTimeout(type, isDeleting ? 100 : 150);
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // --- Project Modal Logic ---
+        const projectCards = document.querySelectorAll('.project-card');
+        const modal = document.getElementById('project-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').innerText;
+                const description = card.querySelector('.project-details').innerHTML;
+                const tagsHTML = Array.from(card.querySelectorAll('.tech-tag')).map(tag => `<span class="bg-slate-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">${tag.innerText}</span>`).join('');
+                
+                const links = card.querySelector('.project-links');
+                const githubLink = links.dataset.github;
+                const liveLink = links.dataset.live;
+                let linksHTML = '';
+                if (githubLink && githubLink !== '#') {
+                    linksHTML += `<a href="${githubLink}" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg inline-flex items-center gap-2">GitHub <i data-feather="github" class="w-4 h-4"></i></a>`;
+                }
+                if (liveLink && liveLink !== '#') {
+                    linksHTML += `<a href="${liveLink}" target="_blank" class="bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2 px-4 rounded-lg inline-flex items-center gap-2">Live Demo <i data-feather="external-link" class="w-4 h-4"></i></a>`;
+                }
+
+                document.getElementById('modal-title').innerText = title;
+                document.getElementById('modal-tags').innerHTML = tagsHTML;
+                document.getElementById('modal-description').innerHTML = description;
+                document.getElementById('modal-links').innerHTML = linksHTML;
+                
+                feather.replace(); // Re-run feather to render new icons
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(); // Close if overlay is clicked
+        });
+        
+        // --- Add classes for project tech tags ---
+        document.querySelectorAll('.tech-tag').forEach(tag => {
+            tag.classList.add('bg-slate-700', 'text-cyan-300', 'text-xs', 'font-semibold', 'px-2.5', 'py-1', 'rounded-full');
+        });
+
+    </script>
+</body>
+</html>
+
+
